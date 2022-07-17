@@ -1,0 +1,1 @@
+This programm will encrypt all the files affected by wannacry of the $HOME/infection directory (to switch the target modify .sh files) using AES algorithm. To decrypt the files you will need the key, which will either be printed in the screen or sent to you through sockets, using port 60002 (use nc -lk 60002 in a term to listen). For more info, python3 stockholm.py -h

