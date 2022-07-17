@@ -26,13 +26,12 @@ encrypted_msg = f.encrypt(message.encode())
 try:
 	with open(sys.argv[1] + ".ft", "wb") as file:
 		file.write(encrypted_msg)
-		if (int(sys.argv[3]) == 0):
-			print("\033[1;32m" + sys.argv[1] + " has been encrypted")
+		print_wrapper("\033[1;32m" + sys.argv[1] + " has been encrypted")
 except Exception:
 	print_wrapper("\033[1;31m" + "Couldn't open " + sys.argv[1] + ".ft")
 	reset_print_exit()
 
-try: 
+try:
 	os.remove(sys.argv[1])
 except Exception:
 	print_wrapper("\033[1;31m" + "Couldn't remove " + sys.argv[1])

@@ -1,9 +1,6 @@
 #!/bin/bash
 
-for file in $(find $HOME/infection -type f)
+for file in $(find $HOME/infection -type f -name *.ft)
 do
-	if [[ "$file" =~ ".ft"$ ]]
-	then
-		python3 decrypt.py $file $1 $2
-	fi
+	python3 decrypt.py $file $1 $2
 done

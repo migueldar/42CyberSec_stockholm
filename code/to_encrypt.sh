@@ -7,6 +7,7 @@ do
 		if [[ "$file" =~ "$ex"$ ]]
 		then
 			python3 encrypt.py $file $1 $2
+			break
 		fi
 	done
 done
