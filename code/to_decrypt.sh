@@ -1,4 +1,5 @@
 #!/bin/bash
+IFS=$'\n'
 
 for file in $(find $HOME/infection -type f -name *.ft)
 do

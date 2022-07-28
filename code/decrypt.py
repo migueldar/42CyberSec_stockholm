@@ -22,13 +22,13 @@ except Exception:
 
 try:
 	f = Fernet(sys.argv[2].encode())
-	msg = f.decrypt(en_message).decode()
+	msg = f.decrypt(en_message)
 except Exception:
 	print_wrapper("\033[1;31m" + "Decryption error for " + sys.argv[1])
 	reset_print_exit()
 
 try:
-	with open(sys.argv[1][0:-3], "w") as file:
+	with open(sys.argv[1][0:-3], "wb") as file:
 		file.write(msg)
 		print_wrapper("\033[1;32m" + sys.argv[1] + " has been decrypted")
 except Exception:

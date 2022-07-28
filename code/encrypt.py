@@ -14,14 +14,14 @@ def print_wrapper(prt):
 		print(prt)
 
 try:
-	with open(sys.argv[1], "r") as file:
+	with open(sys.argv[1], "rb") as file:
 		message = file.read()
 except Exception:
 	print_wrapper("\033[1;31m" + "Couldn't open " + sys.argv[1])
 	reset_print_exit()
 
 f = Fernet(sys.argv[2].encode())
-encrypted_msg = f.encrypt(message.encode())
+encrypted_msg = f.encrypt(message)
 
 try:
 	with open(sys.argv[1] + ".ft", "wb") as file:
